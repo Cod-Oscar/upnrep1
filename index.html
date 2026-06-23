@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colegio San Miguel - Excelencia Educativa</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-name">Colegio San Miguel</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="pages/nosotros.html">Nosotros</a></li>
+                <li><a href="pages/academico.html">Académico</a></li>
+                <li><a href="pages/estudiantes.html">Estudiantes</a></li>
+                <li><a href="pages/padres.html">Padres</a></li>
+                <li><a href="pages/galeria.html">Galería</a></li>
+                <li><a href="pages/admision.html">Admisión</a></li>
+                <li><a href="pages/contacto.html">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenido al<br><span>Colegio San Miguel</span></h1>
+            <p>Formando líderes con excelencia académica, valores y compromiso social desde 1995.</p>
+            <div class="hero-buttons">
+                <a href="pages/admision.html" class="btn btn-primary">Solicitar Admisión</a>
+                <a href="pages/nosotros.html" class="btn btn-outline">Conoce más</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-num">1,200+</span>
+                <span class="stat-label">Estudiantes</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">80+</span>
+                <span class="stat-label">Docentes</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">29</span>
+                <span class="stat-label">Años</span>
+            </div>
+            <div class="stat">
+                <span class="stat-num">100%</span>
+                <span class="stat-label">Acreditado</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== ACCESO RÁPIDO ===== -->
+    <section class="acceso-rapido">
+        <div class="container">
+            <div class="acceso-grid">
+                <a href="pages/academico.html" class="acceso-card">
+                    <span class="acceso-icon">📅</span>
+                    <h3>Horarios</h3>
+                    <p>Consulta tu horario de clases</p>
+                </a>
+                <a href="pages/academico.html" class="acceso-card">
+                    <span class="acceso-icon">📚</span>
+                    <h3>Plan de Estudios</h3>
+                    <p>Revisa el currículo académico</p>
+                </a>
+                <a href="pages/admision.html" class="acceso-card">
+                    <span class="acceso-icon">✍️</span>
+                    <h3>Matrícula</h3>
+                    <p>Proceso de inscripción</p>
+                </a>
+                <a href="pages/contacto.html" class="acceso-card">
+                    <span class="acceso-icon">📞</span>
+                    <h3>Contacto</h3>
+                    <p>Comunícate con nosotros</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NOTICIAS ===== -->
+    <section class="noticias">
+        <div class="container">
+            <div class="section-header">
+                <h2>Noticias y Comunicados</h2>
+                <p>Mantente informado con las últimas novedades de nuestra institución</p>
+            </div>
+            <div class="noticias-grid" id="noticiasGrid">
+                <!-- Se cargan dinámicamente desde la API -->
+                <article class="noticia-card">
+                    <div class="noticia-icon">🎊</div>
+                    <div class="noticia-body">
+                        <span class="noticia-fecha">23 Jun 2024</span>
+                        <h3>Ceremonia de Graduación 2024</h3>
+                        <p>Celebramos con orgullo a nuestra promoción de egresados en una emotiva ceremonia llena de logros.</p>
+                    </div>
+                </article>
+                <article class="noticia-card">
+                    <div class="noticia-icon">🏆</div>
+                    <div class="noticia-body">
+                        <span class="noticia-fecha">18 Jun 2024</span>
+                        <h3>Resultados Académicos Destacados</h3>
+                        <p>Nuestros estudiantes superaron el promedio nacional en evaluaciones de Matemática y Comunicación.</p>
+                    </div>
+                </article>
+                <article class="noticia-card">
+                    <div class="noticia-icon">🔬</div>
+                    <div class="noticia-body">
+                        <span class="noticia-fecha">15 Jun 2024</span>
+                        <h3>Nuevo Laboratorio de Ciencias</h3>
+                        <p>Inauguramos nuestro moderno laboratorio equipado con tecnología de última generación.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EVENTOS ===== -->
+    <section class="eventos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Próximos Eventos</h2>
+                <p>No te pierdas nuestras actividades académicas y culturales</p>
+            </div>
+            <div class="eventos-list">
+                <div class="evento-item">
+                    <div class="evento-fecha">
+                        <span class="mes">JUL</span>
+                        <span class="dia">15</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Inicio de Clases - Ciclo 2024-II</h3>
+                        <p>📍 Todas las aulas · Todos los niveles</p>
+                    </div>
+                    <span class="evento-badge academico">Académico</span>
+                </div>
+                <div class="evento-item">
+                    <div class="evento-fecha">
+                        <span class="mes">AGO</span>
+                        <span class="dia">05</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Feria de Ciencias y Tecnología</h3>
+                        <p>📍 Patio Principal · Primaria y Secundaria</p>
+                    </div>
+                    <span class="evento-badge cultural">Cultural</span>
+                </div>
+                <div class="evento-item">
+                    <div class="evento-fecha">
+                        <span class="mes">AGO</span>
+                        <span class="dia">20</span>
+                    </div>
+                    <div class="evento-info">
+                        <h3>Reunión General de Padres de Familia</h3>
+                        <p>📍 Auditorio Principal · 7:00 PM</p>
+                    </div>
+                    <span class="evento-badge admin">Administrativo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>🎓 Colegio San Miguel</h3>
+                    <p>Formando líderes con excelencia académica, valores y compromiso social desde 1995.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="pages/nosotros.html">Nosotros</a></li>
+                        <li><a href="pages/academico.html">Académico</a></li>
+                        <li><a href="pages/estudiantes.html">Estudiantes</a></li>
+                        <li><a href="pages/admision.html">Admisión</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p>📧 info@colegiomiguel.edu</p>
+                    <p>📞 +51 (1) 2345-6789</p>
+                    <p>📍 Lima, Perú</p>
+                    <p>⏰ Lun - Vie: 8:00 AM - 4:00 PM</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Colegio San Miguel. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+
+</body>
+</html>
