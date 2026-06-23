@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto | Colegio San Miguel</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="nav-brand">
+                <span class="brand-icon">🎓</span>
+                <span class="brand-name">Colegio San Miguel</span>
+            </div>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="academico.html">Académico</a></li>
+                <li><a href="estudiantes.html">Estudiantes</a></li>
+                <li><a href="padres.html">Padres</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="admision.html">Admisión</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contáctanos</h1>
+            <p>Estamos aquí para ayudarte. Escríbenos o visítanos</p>
+        </div>
+    </section>
+
+    <!-- CONTENIDO -->
+    <section class="page-content">
+        <div class="container">
+
+            <!-- INFO DE CONTACTO -->
+            <h2>📍 Información de Contacto</h2>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">📞</div>
+                        <h3>Teléfono</h3>
+                        <p>+51 (1) 2345-6789</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">📧</div>
+                        <h3>Correo</h3>
+                        <p>info@colegiomiguel.edu</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">📍</div>
+                        <h3>Dirección</h3>
+                        <p>Av. Javier Prado Este 1234, Lima</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">⏰</div>
+                        <h3>Horario</h3>
+                        <p>Lun - Vie: 8:00 AM - 4:00 PM</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEPARTAMENTOS -->
+            <h2>🏢 Contacto por Departamento</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Departamento</th>
+                            <th>Responsable</th>
+                            <th>Extensión</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dirección General</td>
+                            <td>Dr. Carlos Mendoza</td>
+                            <td>100</td>
+                            <td>direccion@colegiomiguel.edu</td>
+                        </tr>
+                        <tr>
+                            <td>Dirección Académica</td>
+                            <td>Mg. María García</td>
+                            <td>101</td>
+                            <td>academico@colegiomiguel.edu</td>
+                        </tr>
+                        <tr>
+                            <td>Admisión y Matrícula</td>
+                            <td>Lic. José Sánchez</td>
+                            <td>102</td>
+                            <td>admision@colegiomiguel.edu</td>
+                        </tr>
+                        <tr>
+                            <td>Administración y Pagos</td>
+                            <td>Lic. Roberto López</td>
+                            <td>103</td>
+                            <td>pagos@colegiomiguel.edu</td>
+                        </tr>
+                        <tr>
+                            <td>Bienestar Estudiantil</td>
+                            <td>Psic. Ana Rodríguez</td>
+                            <td>104</td>
+                            <td>bienestar@colegiomiguel.edu</td>
+                        </tr>
+                        <tr>
+                            <td>Secretaría General</td>
+                            <td>Srta. Laura Torres</td>
+                            <td>105</td>
+                            <td>secretaria@colegiomiguel.edu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- MAPA -->
+            <h2>🗺️ Ubicación</h2>
+            <p>Nos encontramos en San Isidro, con fácil acceso desde diferentes puntos de Lima.</p>
+            <div class="map-placeholder">
+                🗺️ Av. Javier Prado Este 1234, San Isidro, Lima, Perú
+            </div>
+
+            <h3>¿Cómo llegar?</h3>
+            <ul>
+                <li><strong>En automóvil:</strong> Ingreso por Av. Javier Prado Este, estacionamiento disponible</li>
+                <li><strong>Bus:</strong> Líneas 14 y 21, paradero a una cuadra del colegio</li>
+                <li><strong>Taxi / Uber:</strong> Busca "Colegio San Miguel, San Isidro"</li>
+                <li><strong>Metro:</strong> Estación Javier Prado a 5 minutos caminando</li>
+            </ul>
+
+            <!-- FORMULARIO DE CONTACTO -->
+            <h2>📝 Envíanos un Mensaje</h2>
+            <p>Completa el formulario y te responderemos en menos de 24 horas hábiles.</p>
+
+            <div class="form-container">
+                <form id="formContacto">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo *</label>
+                            <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input type="tel" id="telefono" name="telefono" placeholder="987654321">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico *</label>
+                        <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="asunto">Asunto *</label>
+                        <select id="asunto" name="asunto" required>
+                            <option value="">Selecciona un asunto</option>
+                            <option value="Consulta sobre Admisión">Consulta sobre Admisión</option>
+                            <option value="Asunto Académico">Asunto Académico</option>
+                            <option value="Información de Pagos">Información de Pagos</option>
+                            <option value="Bienestar Estudiantil">Bienestar Estudiantil</option>
+                            <option value="Reclamo o Sugerencia">Reclamo o Sugerencia</option>
+                            <option value="Consulta General">Consulta General</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje *</label>
+                        <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu consulta aquí..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                    <div class="form-success" id="formSuccess">✅ Mensaje enviado correctamente. Te responderemos pronto.</div>
+                    <div class="form-error"   id="formError"></div>
+                </form>
+            </div>
+
+            <!-- EMERGENCIAS -->
+            <h2>🚨 Línea de Emergencias</h2>
+            <div class="warning-box">
+                Para emergencias escolares o médicas durante el horario escolar llama al <strong>+51 (1) 2345-6700</strong>. Disponible de lunes a viernes durante horas de clase.
+            </div>
+
+            <!-- REDES SOCIALES -->
+            <h2>🌐 Síguenos en Redes Sociales</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">📘</div>
+                        <h3>Facebook</h3>
+                        <p>@ColegioSanMiguel</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">📸</div>
+                        <h3>Instagram</h3>
+                        <p>@colegio.sanmiguel</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">▶️</div>
+                        <h3>YouTube</h3>
+                        <p>Colegio San Miguel Oficial</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-img">
+                        <div class="card-img-icon">💬</div>
+                        <h3>WhatsApp</h3>
+                        <p>+51 987 654 321</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>🎓 Colegio San Miguel</h3>
+                    <p>Formando líderes con excelencia académica desde 1995.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Navegación</h3>
+                    <ul>
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="academico.html">Académico</a></li>
+                        <li><a href="admision.html">Admisión</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contacto</h3>
+                    <p>📧 info@colegiomiguel.edu</p>
+                    <p>📞 +51 (1) 2345-6789</p>
+                    <p>📍 Lima, Perú</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Colegio San Miguel. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/06/23/16/20260623161344-P7HA9VV6.js" defer></script>
+</body>
+</body>
+</html>
