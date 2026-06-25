@@ -35,7 +35,10 @@ app.get('/', (req, res) =>
         res.sendFile(path.join(__dirname, 'pages', `${p}.html`)));
 });
 
-// ===== API: CONTACTOS =====
+// ===================================================
+// API REST - CONTACTOS
+// ===================================================
+
 app.post('/api/contactos', async (req, res) => {
     const { nombre, email, telefono, asunto, mensaje } = req.body;
     if (!nombre || !email || !asunto || !mensaje)
@@ -48,7 +51,11 @@ app.post('/api/contactos', async (req, res) => {
         );
         conn.release();
         console.log(`✅ Contacto guardado: ${nombre}`);
-        res.status(201).json({ success: true, message: 'Mensaje enviado correctamente', id: result.insertId });
+        res.status(201).json({
+            success: true,
+            message: 'Mensaje enviado correctamente',
+            id: result.insertId
+        });
     } catch (err) {
         console.error(err);
         res.status(500).json({ success: false, error: err.message });
@@ -58,15 +65,18 @@ app.post('/api/contactos', async (req, res) => {
 app.get('/api/contactos', async (req, res) => {
     try {
         const conn = await pool.getConnection();
-        const [rows] = await conn.query('SELECT * FROM contactos ORDER BY fecha_creacion DESC LIMIT 50');
+        const [rows] = await conn.query('SELECT * FROM contactos ORDER BY fecha_creacion DESC');
         conn.release();
-        res.json({ success: true, data: rows });
+        res.json({ success: true, total: rows.length, data: rows });
     } catch (err) {
         res.status(500).json({ success: false, error: err.message });
     }
 });
 
-// ===== API: ADMISIÓN =====
+// ===================================================
+// API REST - ADMISIÓN
+// ===================================================
+
 app.post('/api/solicitudes-admision', async (req, res) => {
     const { nombre_estudiante, apellido_estudiante, fecha_nacimiento, email_padre, telefono_padre, grado_interes } = req.body;
     if (!nombre_estudiante || !apellido_estudiante || !fecha_nacimiento || !email_padre || !telefono_padre || !grado_interes)
@@ -92,57 +102,221 @@ app.post('/api/solicitudes-admision', async (req, res) => {
     }
 });
 
-// ===== API: COMUNICADOS =====
-app.get('/api/comunicados', async (req, res) => {
+app.get('/api/admision', async (req, res) => {
     try {
         const conn = await pool.getConnection();
-        const [rows] = await conn.query(
-            'SELECT * FROM comunicados WHERE activo = TRUE ORDER BY fecha_publicacion DESC LIMIT 10'
-        );
+        const [rows] = await conn.query('SELECT * FROM solicitudes_admision ORDER BY fecha_solicitud DESC');
         conn.release();
-        res.json({ success: true, data: rows });
+        res.json({ success: true, total: rows.length, data: rows });
     } catch (err) {
         res.status(500).json({ success: false, error: err.message });
     }
 });
 
-// ===== API: HEALTH CHECK =====
+// ===================================================
+// API REST - COMUNICADOS
+// ===================================================
+
+app.get('/api/comunicados', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query(
+            'SELECT * FROM comunicados WHERE activo = TRUE ORDER BY fecha_publicacion DESC'
+        );
+        conn.release();
+        res.json({ success: true, total: rows.length, data: rows });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ===================================================
+// API REST - ESTUDIANTES
+// ===================================================
+
+app.get('/api/estudiantes', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query('SELECT * FROM estudiantes ORDER BY grado, apellido');
+        conn.release();
+        res.json({ success: true, total: rows.length, data: rows });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ===================================================
+// API REST - EVENTOS
+// ===================================================
+
+app.get('/api/eventos', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query('SELECT * FROM eventos ORDER BY fecha_inicio');
+        conn.release();
+        res.json({ success: true, total: rows.length, data: rows });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ===================================================
+// API REST - HORARIOS
+// ===================================================
+
+app.get('/api/horarios', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query(
+            'SELECT * FROM horarios ORDER BY grado, FIELD(dia_semana,"lunes","martes","miercoles","jueves","viernes"), hora_inicio'
+        );
+        conn.release();
+        res.json({ success: true, total: rows.length, data: rows });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ===================================================
+// API REST - PAGOS
+// ===================================================
+
+app.get('/api/pagos', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [rows] = await conn.query('SELECT * FROM pagos ORDER BY fecha_pago DESC');
+        conn.release();
+        res.json({ success: true, total: rows.length, data: rows });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ===================================================
+// API REST - DASHBOARD
+// ===================================================
+
+app.get('/api/dashboard', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [contactos]          = await conn.query('SELECT COUNT(*) as total FROM contactos');
+        const [admision]           = await conn.query('SELECT COUNT(*) as total FROM solicitudes_admision');
+        const [estudiantes]        = await conn.query('SELECT COUNT(*) as total FROM estudiantes');
+        const [eventos]            = await conn.query('SELECT COUNT(*) as total FROM eventos');
+        const [comunicados]        = await conn.query('SELECT COUNT(*) as total FROM comunicados');
+        const [horarios]           = await conn.query('SELECT COUNT(*) as total FROM horarios');
+        const [ultimosContactos]   = await conn.query('SELECT * FROM contactos ORDER BY fecha_creacion DESC LIMIT 5');
+        const [ultimasAdmisiones]  = await conn.query('SELECT * FROM solicitudes_admision ORDER BY fecha_solicitud DESC LIMIT 5');
+        const [ultimosEstudiantes] = await conn.query('SELECT * FROM estudiantes ORDER BY fecha_inscripcion DESC LIMIT 5');
+        const [proximosEventos]    = await conn.query('SELECT * FROM eventos ORDER BY fecha_inicio LIMIT 5');
+        conn.release();
+        res.json({
+            success: true,
+            proyecto: 'Colegio San Miguel - Sistema Web',
+            timestamp: new Date(),
+            resumen: {
+                total_contactos:   contactos[0].total,
+                total_admisiones:  admision[0].total,
+                total_estudiantes: estudiantes[0].total,
+                total_eventos:     eventos[0].total,
+                total_comunicados: comunicados[0].total,
+                total_horarios:    horarios[0].total
+            },
+            ultimos_contactos:   ultimosContactos,
+            ultimas_admisiones:  ultimasAdmisiones,
+            ultimos_estudiantes: ultimosEstudiantes,
+            proximos_eventos:    proximosEventos
+        });
+    } catch (err) {
+        res.status(500).json({ success: false, error: err.message });
+    }
+});
+
+// ===================================================
+// API REST - HEALTH CHECK
+// ===================================================
+
 app.get('/api/health', async (req, res) => {
     try {
         const conn = await pool.getConnection();
         conn.release();
-        res.json({ success: true, status: 'OK', database: 'Conectado', timestamp: new Date() });
+        res.json({
+            success: true,
+            status: 'OK',
+            database: 'Conectado',
+            proyecto: 'Colegio San Miguel',
+            version: '2.0.0',
+            timestamp: new Date(),
+            endpoints: [
+                'GET  /api/health',
+                'GET  /api/dashboard',
+                'GET  /api/contactos',
+                'POST /api/contactos',
+                'GET  /api/admision',
+                'POST /api/solicitudes-admision',
+                'GET  /api/comunicados',
+                'GET  /api/estudiantes',
+                'GET  /api/eventos',
+                'GET  /api/horarios',
+                'GET  /api/pagos'
+            ]
+        });
     } catch (err) {
         res.status(500).json({ success: false, status: 'Error BD', error: err.message });
     }
 });
 
-// ===== 404 =====
+// ===================================================
+// 404
+// ===================================================
+
 app.use((req, res) => {
     res.status(404).send(`
-        <!DOCTYPE html><html lang="es"><head><meta charset="UTF-8">
-        <title>404</title>
-        <style>
-            body { font-family: Arial, sans-serif; text-align: center; padding: 80px;
-                   background: linear-gradient(135deg,#1a56db,#0ea5e9); color: white; }
-            h1 { font-size: 60px; } p { font-size: 18px; }
-            a { color: white; font-weight: bold; }
-        </style></head><body>
-        <h1>404</h1><p>Página no encontrada.</p>
-        <a href="/">← Volver al inicio</a>
-        </body></html>
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>404 - Página no encontrada</title>
+            <style>
+                body { font-family: Arial, sans-serif; text-align: center; padding: 80px;
+                       background: linear-gradient(135deg, #1a56db, #0ea5e9); color: white; }
+                h1 { font-size: 80px; margin-bottom: 10px; }
+                p  { font-size: 20px; }
+                a  { color: white; font-weight: bold; text-decoration: underline; }
+            </style>
+        </head>
+        <body>
+            <h1>404</h1>
+            <p>Página no encontrada.</p>
+            <a href="/">← Volver al inicio</a>
+        </body>
+        </html>
     `);
 });
 
-// ===== INICIAR SERVIDOR =====
+// ===================================================
+// INICIAR SERVIDOR
+// ===================================================
+
 app.listen(PORT, '0.0.0.0', () => {
     console.log(`
-╔══════════════════════════════════════════════╗
-║   🎓 COLEGIO SAN MIGUEL - SERVIDOR ACTIVO   ║
-╠══════════════════════════════════════════════╣
-║  🌐 http://localhost:${PORT}
-║  🗄️  BD: ${process.env.DB_NAME || 'colegio_san_miguel'}
-║  📅 ${new Date().toLocaleString('es-PE')}
-╚══════════════════════════════════════════════╝
+╔══════════════════════════════════════════════════════════╗
+║        🎓 COLEGIO SAN MIGUEL - SERVIDOR ACTIVO          ║
+╠══════════════════════════════════════════════════════════╣
+║  🌐 URL:  http://localhost:${PORT}
+║  🗄️  BD:   ${process.env.DB_NAME || 'colegio_san_miguel'}
+║  📅 Hora: ${new Date().toLocaleString('es-PE')}
+╠══════════════════════════════════════════════════════════╣
+║  📡 ENDPOINTS:                                          ║
+║  GET  /api/health      → Estado del servidor            ║
+║  GET  /api/dashboard   → Dashboard completo             ║
+║  GET  /api/contactos   → Ver contactos                  ║
+║  GET  /api/admision    → Ver admisiones                 ║
+║  GET  /api/estudiantes → Ver estudiantes                ║
+║  GET  /api/eventos     → Ver eventos                    ║
+║  GET  /api/horarios    → Ver horarios                   ║
+║  GET  /api/comunicados → Ver comunicados                ║
+║  GET  /api/pagos       → Ver pagos                      ║
+╚══════════════════════════════════════════════════════════╝
     `);
 });
